@@ -1,0 +1,55 @@
+// Grid
+
+$grid-0: 0;
+$grid-1: 8.333333333%;
+$grid-2: 16.666666667%;
+$grid-3: 25%;
+$grid-4: 33.333333333%;
+$grid-5: 41.666666667%;
+$grid-6: 50%;
+$grid-7: 58.333333333%;
+$grid-8: 66.666666667%;
+$grid-9: 75%;
+$grid-10: 83.333333333%;
+$grid-11: 91.666666667%;
+
+// Sidebar
+
+$sidebar-thickness-left: 84px;
+$sidebar-thickness-top: 64px;
+
+// Screen sizes
+
+$screen-sm-min: 767px;
+$screen-md-min: 1023px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 1366px;
+
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+body {
+    font-family:  Muli, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 700;
+}
