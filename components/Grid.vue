@@ -18,8 +18,10 @@ export default {
     transition: margin-left 0.8s cubic-bezier(0.37, -0.04, 0.25, 1);
     margin-left: 0;
     position: absolute;
-    height: 100%;
-    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 
     .grid-item {
         position: absolute;
@@ -27,8 +29,8 @@ export default {
         height: 100%;
         min-height: 100vh;
         width: 1px;
-        background-color: black;
-        opacity: 0.05;
+        background-color: $line-color;
+        opacity: 5%;
 
         &.grid-0 {
             left: $grid-0;

@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "yarn generate && xcopy \"dist\\*\" \"..\\grubtub19.github.io\" /E /Y && cd ..\\grubtub19.github.io && git add . && git commit -m \"deploy (see src repo)\" && git push && cd ..\\portfolio"
   },
   "dependencies": {
     "@nuxt/http": "^0.6.2",

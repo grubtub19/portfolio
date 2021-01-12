@@ -1,19 +1,16 @@
 <template>
   <div class="page">
-    <Grid :grid-array=[0,1,4,8,11] />
     <github />
   </div>
 </template>
 
 <script>
-import Grid from '~/components/Grid.vue'
 import Github from '~/components/Github.vue'
-import Logo from '~/components/Logo.vue'
 import gsap from 'gsap'
 
 export default {
   components: {
-    Logo, Github, Grid
+     Github
   },
   mounted() {
     const timeline = new gsap.timeline();
@@ -47,6 +44,7 @@ export default {
       left: $grid-1;
       width: $grid-3;
       font-size: 20px;
+      color: $text-color;
 
       @include sm {
         position: absolute;
@@ -58,10 +56,6 @@ export default {
       }
     }
   }
-
-  @include sm {
-        padding-top: 20px;
-    }
 }
 
 .container {

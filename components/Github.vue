@@ -22,6 +22,9 @@ export default {
     mounted() {
                 axios.get("https://api.github.com/users/grubtub19/repos")
         .then(response => {
+            if (response.status == 403) {
+
+            }
             console.log(response)
             response.data.forEach(project => {
                 console.log(project.name)
@@ -31,7 +34,15 @@ export default {
                     project_entry.name = project.name;
                     project_entry.desc = project.description;
                     
-                    axios.get("https://api.github.com/repos/grubtub19/" + project.name + "/readme")
+                    axios.get("https://api.github.com/repos/grubtub19/" + project.name + "/readme"
+                    //,
+                    //{
+                    //    auth: {
+                    //        username: "grubtub19",
+                    //        password: "2c50ec19dea4fc8f51d094348fe2a8ac85bdc7d0"
+                    //    }
+                    //}
+                    )
                     .then(readme => {
                         var img_regex = /!\[.*\]\((.*)\)/g
                         var description = atob(readme.data.content)

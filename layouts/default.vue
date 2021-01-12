@@ -1,8 +1,11 @@
 <template>
-  <div class="layout">
+  <div class="default-layout">
     <sidebar />
-    <div class="content">
-      <nuxt />
+    <div class="page">
+      <Grid :grid-array=[0,1,4,8,11] />
+      <div class="content">
+        <nuxt />
+      </div>
     </div>
   </div>
 </template>
@@ -22,11 +25,14 @@ export default {
 </script>
 
 <style lang='scss'>
-$sidebar-thickness-left: 6rem;
 
-.content {
+.page {
   position: relative;
-  padding-top: $sidebar-thickness-top;
+
+  .content {
+    position: relative;
+    padding-top: 20px;
+  }
 }
 
 html {
@@ -39,16 +45,22 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  background-color: black;
 }
 
 html, body, #__nuxt, #__layout {
   height: auto;
 }
 
-#__layout {
+.default-layout {
+  height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
+
+  @include md {
+        flex-direction: row!important;
+    }
 }
 
 *,
