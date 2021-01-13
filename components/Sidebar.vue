@@ -16,21 +16,23 @@
                 <div class="background"></div>
                 
                 <div class="menu-container">
-                    <div class="menu-item">
-                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
-                        <p>Research</p>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
-                        <p>Research</p>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
-                        <p>Research</p>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
-                        <p>Research</p>
+                    <div class="menu-grid">
+                        <div class="menu-item">
+                            <div class="menu-icon"><img src="~/static/paper.png"/></div>
+                            <div class="menu-label"><p>Research</p></div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-icon"><img src="~/static/game.png"/></div>
+                            <div class="menu-label"><p>Gaming</p></div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-icon"><img src="~/static/manage.png"/></div>
+                            <div class="menu-label"><p>Teamwork</p></div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-icon"><img src="~/static/graphics.png"/></div>
+                            <div class="menu-label"><p>Graphics</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,26 +54,26 @@ export default {
         }
     },
     mounted: function() {
-        this.tween.set(".menu", { display: "flex" })
+        this.tween.set(".menu", { visibility: "visible" })
 
         this.tween.to(".plus", 0.3, { rotation: 135, ease: "power3.easeOut"})
-        this.tween.from(".menu .background", 0.3, { width: 0, ease: "power3.easeOut"}, "<")
+        this.tween.from(".menu .background", 0.3, { scaleX: 0, ease: "power3.easeOut"}, "<")
 
         this.tween.from(".menu-container", 0.3, { opacity: 0 })
-        this.tween.from(".menu-container h2", 0.3, { y: -20, ease: "power3.easeOut"}, "<")
-        this.tween.from(".menu-container p", 0.3, { y: 20, ease: "power3.easeOut", stagger: 0.04}, "<")
+        this.tween.from(".menu-icon img", 0.3, { y: -20, ease: "power3.easeOut"}, "<")
+        this.tween.from(".menu-label p", 0.3, { y: 20, ease: "power3.easeOut", stagger: 0.04}, "<")
 
         this.tween.addPause(),
 
-        this.tween.to(".menu-container p", 0.3, { y: 20, ease: "power3.easeOut", stagger: { each: 0.04, from: "end"}})
-        this.tween.to(".menu-container h2", 0.3, { y: -20, ease: "power3.easeOut"}, "<")
+        this.tween.to(".menu-label p", 0.3, { y: 20, ease: "power3.easeOut", stagger: { each: 0.04, from: "end"}})
+        this.tween.to(".menu-icon img", 0.3, { y: -20, ease: "power3.easeOut"}, "<")
 
-        this.tween.to(".menu-container", 0.3, { opacity: 0 }, "-=0.2")
-        this.tween.to(".menu .background", 0.3, { width: 0, ease: "power3.easeOut"}, "<")
+        this.tween.to(".menu-container", 0.3, { opacity: 0 }, "<")
+        this.tween.to(".menu .background", 0.3, { scaleX: 0, ease: "power3.easeOut"})
 
         this.tween.to(".plus", 0.3, { rotation: 0, ease: "power3.easeOut"}, "<")
         
-        this.tween.set(".menu", { display: "none" })
+        this.tween.set(".menu", { visibility: "none" })
     },
     methods: {
         showMenu() {
@@ -94,6 +96,10 @@ export default {
 $plus-padding: 20%;
 $sidebar-width: 25%;
 $sidebar-width-decimal: 0.25;
+
+$menu-padding: 10%;
+$menu-spacing: 40px;
+$menu-padding-spacing-md: 80px;
 
 #sidebar {
     // sidebar at top on sm-
@@ -192,12 +198,11 @@ $sidebar-width-decimal: 0.25;
 }
 
 .menu {
-    justify-content: center;
-    flex-grow: 1;
-    display: none;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
+    visibility: none;
 
     width: 100%;
     height: calc(100vh - #{$sidebar-thickness-top});
@@ -212,57 +217,96 @@ $sidebar-width-decimal: 0.25;
 
     .menu-container {
         display: flex;
-        flex-flow: row wrap;
+        justify-content: center;
+        align-items: unset;
         position: relative;
-        padding: 100px 100px;
+        height: 100%;
+        overflow-y: scroll;
 
-        @include ultra {
-                width: 100%;
-            }
+        @include square {
+            align-items: center;
+        }
 
-        .menu-item {
-            
-            width: 100%;
+        &::-webkit-scrollbar {
+            width: 0px;  /* Remove scrollbar space */
+            background: transparent;  /* Optional: just make scrollbar invisible */
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            justify-content: center;
             position: relative;
+            height: fit-content;
+            padding: $menu-padding;
+            row-gap: $menu-spacing;
+            column-gap: $menu-spacing;
 
-            @include sm {
-                width: 50%;
+            @include md {
+                padding: $menu-padding-spacing-md;
+                row-gap: $menu-padding-spacing-md;
+                column-gap: $menu-padding-spacing-md;
             }
 
-            @include ultra {
-                width: 25%;
-            }
+            @include square {
+                grid-template-columns: repeat(2, 1fr);
+                width: min(100%, calc(100vh - 112px));
+                align-content: center;
+                
+                
 
-            .menu-icon {
-                //Not perfect on mobile
-                height: 90%;
-
-                img {
-                    object-fit: contain;
-                    width: 100%;
-                    height: 100%;
-                    margin: 0;
+                @include md {
+                    width: min(100%, calc(100vh - 47px));
                 }
             }
 
-            p {
-                //Doesn't do anything
-                height: 20%;
+            @include wide {
+                    grid-template-columns: repeat(4, 1fr);
+                    width: 100%;
+                    margin: auto;
+                }
+
+            .menu-item {
+                width: 100%;
+                position: relative;
+                transition: transform 0.2s ease-out;
+                
+
+                &:hover {
+                    transform: translateY(-10px);                    
+                }
+
+                .menu-icon {
+                    height: 90%;
+                    
+                    img {
+                        object-fit: contain;
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        filter: brightness(100);
+                    }
+                }
+
+                .menu-label {
+
+                    p {
+                        
+                        height: 10%;
+                        text-align: center;
+                        font-size: 40px;
+                    }
+                }        
             }
-
-            
         }
-
-
     }
 
     .background {
         position: absolute;
         width: 100%;
         height: 100%;
+        transform-origin: left;
         background-color: #ed1d27;
     }
-
-
 }
 </style>

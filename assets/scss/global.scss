@@ -60,6 +60,18 @@ $screen-ultra-min: 1920px;
     }
 }
 
+@mixin square {
+    @media (min-aspect-ratio: 2/4) {
+        @content;
+    }
+}
+
+@mixin wide {
+    @media (min-aspect-ratio: 6/4) {
+        @content;
+    }
+}
+
 body {
     font-family:  Muli, Arial, "Lucida Grande", sans-serif; 
     font-weight: 700;
