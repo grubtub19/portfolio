@@ -28,6 +28,7 @@ $screen-sm-min: 767px;
 $screen-md-min: 1023px;
 $screen-lg-min: 1200px;
 $screen-xl-min: 1366px;
+$screen-ultra-min: 1920px;
 
 @mixin sm {
     @media (min-width: #{$screen-sm-min}) {
@@ -49,6 +50,12 @@ $screen-xl-min: 1366px;
 
 @mixin xl {
     @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+@mixin ultra {
+    @media (min-width: #{$screen-ultra-min}) {
         @content;
     }
 }

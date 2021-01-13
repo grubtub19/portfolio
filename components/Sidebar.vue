@@ -14,12 +14,24 @@
             </div>
             <div class="menu">
                 <div class="background"></div>
+                
                 <div class="menu-container">
-                    <h2>Peter Robe</h2>
-                    <p>Graduate Research Assistant</p>
-                    <p>University of Tulsa</p>
-                    <p>Bachelor of Science in Computer Science</p>
-                    <p>Fish Bowl President in highschool</p>
+                    <div class="menu-item">
+                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
+                        <p>Research</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
+                        <p>Research</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
+                        <p>Research</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-icon"><img src="~/static/paper.png"/></div>
+                        <p>Research</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,7 +52,7 @@ export default {
         }
     },
     mounted: function() {
-        this.tween.set(".menu", { display: "block" })
+        this.tween.set(".menu", { display: "flex" })
 
         this.tween.to(".plus", 0.3, { rotation: 135, ease: "power3.easeOut"})
         this.tween.from(".menu .background", 0.3, { width: 0, ease: "power3.easeOut"}, "<")
@@ -180,29 +192,68 @@ $sidebar-width-decimal: 0.25;
 }
 
 .menu {
+    justify-content: center;
     flex-grow: 1;
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    
+
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - #{$sidebar-thickness-top});
     color: white;
 
     @include md {
         width: calc(100vw - #{$sidebar-thickness-left});
+        height: 100vh;
         top: 0;
         left: 100%;
     }
 
     .menu-container {
+        display: flex;
+        flex-flow: row wrap;
         position: relative;
-        margin: 100px 100px;
+        padding: 100px 100px;
 
-        & * {
-            margin-bottom: 20px;
+        @include ultra {
+                width: 100%;
+            }
+
+        .menu-item {
+            
+            width: 100%;
+            position: relative;
+
+            @include sm {
+                width: 50%;
+            }
+
+            @include ultra {
+                width: 25%;
+            }
+
+            .menu-icon {
+                //Not perfect on mobile
+                height: 90%;
+
+                img {
+                    object-fit: contain;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                }
+            }
+
+            p {
+                //Doesn't do anything
+                height: 20%;
+            }
+
+            
         }
+
+
     }
 
     .background {
@@ -211,5 +262,7 @@ $sidebar-width-decimal: 0.25;
         height: 100%;
         background-color: #ed1d27;
     }
+
+
 }
 </style>
