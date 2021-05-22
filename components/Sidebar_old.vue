@@ -13,24 +13,34 @@
                 <div class='name-logo'>Peter Robe</div>
             </div>
             <div class="menu">
-                <div class="background"></div>  
+                <div class="background"></div>
+                
                 <div class="menu-container">
-                    <div class="name">
-                        <h2>Peter Robe</h2>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="4.58889in" height="4.03333in" viewBox="0 0 413 363">
-                            <path id="svg_1" fill="none" stroke="white" stroke-width="50" d="M 370.39,25.40 C 370.39,25.40 206.89,311.52 206.89,311.52 206.89,311.52 43.39,25.40 43.39,25.40 43.39,25.40 370.39,25.40 370.39,25.40 370.39,25.40 370.39,25.40 370.39,25.40 Z" />
-                        </svg>
-                    </div>
-                    <div class="menu-item nav">
-                        <a href="about">Machine Learning</a>
-                        <a href="resume">Game Engine</a>
-                        <a href="contact">Research</a>
-                        <a href="soft">Software Dev</a>
-                    </div>
-                    <div class="menu-item contact">
-                        <a href="about">About</a>
-                        <a href="resume">Resume</a>
-                        <a href="contact">Contact</a>
+                    <div class="menu-grid">
+                        <div class="grid-square">
+                            <div class="menu-item">
+                                <div class="menu-icon"><img src="~/static/paper.png"/></div>
+                                <div class="menu-label"><p>Research</p></div>
+                            </div>
+                        </div>
+                        <div class="grid-square">
+                            <div class="menu-item">
+                                <div class="menu-icon"><img src="~/static/game.png"/></div>
+                                <div class="menu-label"><p>Gaming</p></div>
+                            </div>
+                        </div>
+                        <div class="grid-square">
+                            <div class="menu-item">
+                                <div class="menu-icon"><img src="~/static/manage.png"/></div>
+                                <div class="menu-label"><p>Teamwork</p></div>
+                            </div>
+                        </div>
+                        <div class="grid-square">
+                            <div class="menu-item">
+                                <div class="menu-icon"><img src="~/static/graphics.png"/></div>
+                                <div class="menu-label"><p>Graphics</p></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,145 +224,110 @@ $menu-padding-spacing-md: 10vmin;
     }
 
     .menu-container {
-        display: grid;
-        justify-content: space-between;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, auto);
-        grid-gap: 0 40px;
+        display: flex;
+        justify-content: center;
         align-items: unset;
         position: relative;
         height: 100%;
-        padding: 15px 30px;
         overflow-y: scroll;
+
+        @include square {
+            align-items: center;
+        }
 
         &::-webkit-scrollbar {
             width: 0px;  /* Remove scrollbar space */
             background: transparent;  /* Optional: just make scrollbar invisible */
         }
 
-        @include sm {
-            padding: 30px 60px;
-        }
-
-        @include md {
-            grid-template-columns: repeat(2, 50%);
-            grid-template-rows: 40% 60%;
-        }
-
-        .menu-item {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-
-            > * {
-                transition: transform 0.2s, color 0.2s;
-                margin: 2vh 0;
-                font-family: Roboto;
-                color: white;
-                text-decoration: none;
-                font-size: min(calc(13vw - 10px), 4vh);
-
-                &:hover {
-                    color: black;
-                    transform: translateX(10px);
-                }
-            }
-
-            h2 {
-                font-size: calc(19.5vw - 17px);
-
-                @include sm {
-                    font-size: calc(19.5vw - 29px);
-                }
-                
-                @include md {
-                    font-size: calc(6vw - 5px);
-                }
-            }
-
-            h4 {
-                font-size: 18px;
-                font-family: 'SuisseIntl-Book';
-
-                @include sm {
-                    font-size: 20px;
-                }
-                
-                @include md {
-                    font-size: 1.8vw;
-                }
-            }
-        }
-
-        .name {
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            justify-content: center;
             position: relative;
-            text-align: center;
-            grid-column-start: 1;
-            grid-row-start: 1;
+            height: fit-content;
+            width: min(100%, 100vh);
+            padding: $menu-padding;
+            row-gap: $menu-spacing;
+            column-gap: $menu-spacing;
+            font-size: 10vw;
 
             @include md {
-                grid-column-start: 1;
-                grid-column-end: 3;
-                grid-row-start: 2;
+                padding: $menu-padding-spacing-md;
+                row-gap: $menu-padding-spacing-md;
+                column-gap: $menu-padding-spacing-md;
             }
 
-            h2 {
-                font-size: 160px;
-                position: absolute;
-                bottom: 100%;
-                left: 50%;
-                transform: translate(-50%, 0);
-                white-space: nowrap;
+            @include square {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                //width: min(100%, calc(100vh - 112px));
+                align-content: center;
+                font-size: 5vmin;
+
+                @include md {
+                    //width: min(100%, calc(100vh - 47px));
+                }
             }
 
-            svg {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
+            @include wide {
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                    width: 100%;
+                    margin: auto;
+                    font-size: 2.5vw;
+                    padding: 5vw;
+                    column-gap: 5vw;
+                }
 
-        .nav {
-            grid-column-start: 1;
-            grid-row-start: 2;
-            text-align: right;
+            .grid-square {
+                position: relative;
 
-            a:nth-child(1) {
-                margin-right: 210px;
-            }
-            a:nth-child(2) {
-                margin-right: 150px;
-            }
-            a:nth-child(3) {
-                margin-right: 90px;
-            }
-            a:nth-child(4) {
-                margin-right: 40px;
-            }
-        }
+                &::before {
+                    content: "";
+                    padding-bottom: 100%;
+                    display: inline-block;
+                    vertical-align: top;
+                }
 
-        .contact {
-            grid-column-start: 1;
-            grid-row-start: 3;
+                .menu-item {
+                    display: flex;
+                    flex-flow: column nowrap;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    transition: transform 0.2s ease-out;
+                    
 
-            @include sm {
-                grid-column-start: 2;
-                grid-row-start: 2;
-            }
+                    &:hover {
+                        transform: translateY(-10px);                    
+                    }
 
-            a:nth-child(1) {
-                margin-top: 60px;
-                margin-left: 200px;
-            }
-            a:nth-child(2) {
-                margin-left: 140px;
-            }
-            a:nth-child(3) {
-                margin-left: 80px;
-            }
-            a:nth-child(4) {
-                margin-left: 30px;
+                    .menu-icon {
+                        flex: 1;
+
+                        // Fixes a bug in flexbox
+                        min-height: 0;
+                        
+                        img {
+                            object-fit: contain;
+                            width: 100%;
+                            height: 100%;
+                            margin: 0;
+                            filter: brightness(100);
+                        }
+                    }
+
+                    .menu-label {
+
+                        p {
+                            text-align: center;
+                            font-family: calluna;
+                            padding-top: 10%;
+                        }
+                    }        
+                }
             }
         }
     }

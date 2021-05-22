@@ -72,7 +72,21 @@ $screen-ultra-min: 1920px;
     }
 }
 
-body {
+html, body {
+    height: 100%;
     font-family:  Muli, Arial, "Lucida Grande", sans-serif; 
     font-weight: 700;
+}
+
+@font-face {
+    font-family: "Calluna";
+    src: url(../assets/fonts/calluna.woff);
+  }
+
+@font-face {
+    font-family: 'SuisseIntl-Book';
+    font-style: normal;
+    font-weight: 100 400;
+    font-display: swap;
+    src: url('~assets/fonts/SuisseIntl-Book.woff2') format('woff2');
 }
