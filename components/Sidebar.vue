@@ -10,16 +10,13 @@
                         </g>
                     </svg>
                 </div>
-                <div class='name-logo'>Peter Robe</div>
+                <a class='name-logo' href="/">Peter Robe</a>
             </div>
             <div class="menu">
                 <div class="background"></div>  
                 <div class="menu-container">
                     <div class="name">
-                        <h2>Peter Robe</h2>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="4.58889in" height="4.03333in" viewBox="0 0 413 363">
-                            <path id="svg_1" fill="none" stroke="white" stroke-width="50" d="M 370.39,25.40 C 370.39,25.40 206.89,311.52 206.89,311.52 206.89,311.52 43.39,25.40 43.39,25.40 43.39,25.40 370.39,25.40 370.39,25.40 370.39,25.40 370.39,25.40 370.39,25.40 Z" />
-                        </svg>
+                        <h2>PR</h2>
                     </div>
                     <div class="menu-item nav">
                         <a href="about">Machine Learning</a>
@@ -32,6 +29,7 @@
                         <a href="resume">Resume</a>
                         <a href="contact">Contact</a>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -188,6 +186,7 @@ $menu-padding-spacing-md: 10vmin;
     z-index: 1;
     color: $text-color;
     writing-mode: horizontal-tb;
+    text-decoration: none;
 
     @include md {
         font-size: 34px;
@@ -215,58 +214,37 @@ $menu-padding-spacing-md: 10vmin;
 
     .menu-container {
         display: grid;
-        justify-content: space-between;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, auto);
         grid-gap: 0 40px;
         align-items: unset;
         position: relative;
-        height: 100%;
-        padding: 15px 30px;
-        overflow-y: scroll;
+        top: 50%;
+        left: 50%;
+        width: fit-content;
+        transform: translate(-50%, -50%);
 
         &::-webkit-scrollbar {
             width: 0px;  /* Remove scrollbar space */
             background: transparent;  /* Optional: just make scrollbar invisible */
         }
 
-        @include sm {
-            padding: 30px 60px;
-        }
-
-        @include md {
-            grid-template-columns: repeat(2, 50%);
-            grid-template-rows: 40% 60%;
-        }
-
         .menu-item {
             width: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            z-index: 1;
 
             > * {
                 transition: transform 0.2s, color 0.2s;
-                margin: 2vh 0;
+                padding: 5px 0;
                 font-family: Roboto;
+                font-weight: 100;
                 color: white;
                 text-decoration: none;
-                font-size: min(calc(13vw - 10px), 4vh);
+                font-size: 50px;
 
                 &:hover {
-                    color: black;
                     transform: translateX(10px);
-                }
-            }
-
-            h2 {
-                font-size: calc(19.5vw - 17px);
-
-                @include sm {
-                    font-size: calc(19.5vw - 29px);
-                }
-                
-                @include md {
-                    font-size: calc(6vw - 5px);
                 }
             }
 
@@ -286,74 +264,24 @@ $menu-padding-spacing-md: 10vmin;
 
         .name {
             position: relative;
-            text-align: center;
             grid-column-start: 1;
             grid-row-start: 1;
-
-            @include md {
-                grid-column-start: 1;
-                grid-column-end: 3;
-                grid-row-start: 2;
-            }
-
-            h2 {
-                font-size: 160px;
-                position: absolute;
-                bottom: 100%;
-                left: 50%;
-                transform: translate(-50%, 0);
-                white-space: nowrap;
-            }
-
-            svg {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-            }
+            line-height: 190px;
+            font-size: 220px;
+            font-weight: 800;
+            font-family: 'Kanit';
+            margin-left: -10px;
         }
 
         .nav {
             grid-column-start: 1;
             grid-row-start: 2;
-            text-align: right;
-
-            a:nth-child(1) {
-                margin-right: 210px;
-            }
-            a:nth-child(2) {
-                margin-right: 150px;
-            }
-            a:nth-child(3) {
-                margin-right: 90px;
-            }
-            a:nth-child(4) {
-                margin-right: 40px;
-            }
+            margin-top: 20px;
         }
 
         .contact {
-            grid-column-start: 1;
-            grid-row-start: 3;
-
-            @include sm {
-                grid-column-start: 2;
-                grid-row-start: 2;
-            }
-
-            a:nth-child(1) {
-                margin-top: 60px;
-                margin-left: 200px;
-            }
-            a:nth-child(2) {
-                margin-left: 140px;
-            }
-            a:nth-child(3) {
-                margin-left: 80px;
-            }
-            a:nth-child(4) {
-                margin-left: 30px;
-            }
+            grid-column-start: 2;
+            grid-row-start: 1;
         }
     }
 
@@ -362,7 +290,8 @@ $menu-padding-spacing-md: 10vmin;
         width: 100%;
         height: 100%;
         transform-origin: left;
-        background-color: #ed1d27;
+        background-color: #000000;
+        //background-image: url("~static/The Network.png");
     }
 }
 </style>

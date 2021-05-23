@@ -1,3 +1,5 @@
+
+
 $text-color: white;
 $line-color:  hsla(0,0%,100%,.2);
 $background-color: black;
@@ -90,3 +92,12 @@ html, body {
     font-display: swap;
     src: url('~assets/fonts/SuisseIntl-Book.woff2') format('woff2');
 }
+
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(https://fonts.googleapis.com/css2?family=Titillium+Web:wght@900&display=swap);
+}
+
